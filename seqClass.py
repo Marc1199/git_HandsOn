@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-#Aqui estem precticant el push del github
+#Here we are practicing the push on git.
 import sys, re
 from argparse import ArgumentParser
 
