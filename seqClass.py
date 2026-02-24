@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # Classify a sequence as DNA or RNA and optionally search for a motif
 
+#Here we are practicing the push on git.
+
 import sys, re
 from argparse import ArgumentParser
 
@@ -14,21 +16,21 @@ if len(sys.argv) == 1:
 
 args = parser.parse_args()
 
-seq = args.seq.upper()   #Note we just added this line
+args.seq = args.seq.upper()                 # Note we just added this line
 
-if not re.fullmatch(r"[ACGTU]+", seq):
-    print("The sequence is not DNA nor RNA (invalid characters found)")
+# Validate sequence is not empty
+if not args.seq.strip():
+    print('Error: sequence cannot be empty')
     sys.exit(1)
 
-contains_T = "T" in seq
-contains_U = "U" in seq
+if re.search('^[ACGTU]+$', args.seq):
+    if re.search('T', args.seq):
+        print ('The sequence is DNA')
+    elif re.search('U', args.seq):
+        print ('The sequence is RNA')
+    else:
+        print ('The sequence can be DNA or RNA')
 
-if contains_T and contains_U:
-    print("Invalid sequence: contains both T and U")
-elif contains_T:
-    print("The sequence is DNA")
-elif contains_U:
-    print("The sequence is RNA")
 else:
     print("The sequence can be DNA or RNA")
 
@@ -38,4 +40,5 @@ if args.motif:
     if re.search(motif, seq):
         print("I FOUND SOMETHING")
     else:
-        print("NOT FOUND IN ANY PLACE")
+        print("NOT FOUND IN ANY PLACE") 
+
