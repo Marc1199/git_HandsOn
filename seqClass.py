@@ -14,6 +14,12 @@ if len(sys.argv) == 1:
 args = parser.parse_args()
 
 args.seq = args.seq.upper()                 # Note we just added this line
+
+# Validate sequence is not empty
+if not args.seq.strip():
+    print('Error: sequence cannot be empty')
+    sys.exit(1)
+
 if re.search('^[ACGTU]+$', args.seq):
     if re.search('T', args.seq):
         print ('The sequence is DNA')
@@ -30,4 +36,5 @@ if args.motif:
     if re.search(args.motif, args.seq):
         print("I FOUND SOMETHING")
     else:
-        print("NOT FOUND IN ANY PLACE")
+        print("NOT FOUND IN ANY PLACE") 
+
